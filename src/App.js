@@ -1,23 +1,20 @@
 import React from "react";
 import logo from "./resources/logo.svg";
+import FetchTrending from "./hooks/fetch_trending.js";
+
+const URL_TRENDING = "https://api-stg.jam-community.com/song/trending";
 
 const app = () => {
+  const data = FetchTrending(URL_TRENDING);
+  console.log(data);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ul>
+        {data.map(el => (
+          <li key={el.id}>{el.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };
