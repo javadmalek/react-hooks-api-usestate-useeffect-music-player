@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import camelcaseKeys from "camelcase-keys";
 
 const FetchTrending = url => {
   const [data, setData] = useState([]);
@@ -6,7 +7,7 @@ const FetchTrending = url => {
   useEffect(() => {
     fetch(url)
       .then(response => response.json())
-      .then(data => setData(data));
+      .then(data => setData(camelcaseKeys(data)));
   }, []);
 
   return data;
