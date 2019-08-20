@@ -3,28 +3,35 @@ import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 
-const ItemDiv = styled.div`
-  font-size: 20px;
-  line-height: 2;
-`;
-
-const item = track => {
+const renderTrack = (track, onPlayingTrackChangeFn) => {
   return (
-    <ItemDiv key={track.id}>
+    <TrackDiv key={track.id} onClick={() => onPlayingTrackChangeFn(track)}>
       <h1>{track.name || <Skeleton />}</h1>
       {track.artistName || <Skeleton count={10} />}
-    </ItemDiv>
+    </TrackDiv>
   );
 };
 
-const Tracks = ({ list }) => {
-  const items = list.map(item);
+const Tracks = ({ trendingTracks, onPlayingTrackChangeFn }) => {
+  const items = trendingTracks.map(track =>
+    renderTrack(track, onPlayingTrackChangeFn)
+  );
   return <div>{items}</div>;
 };
 
 Tracks.propTypes = {
-  list: PropTypes.array
+  trendingTracks: PropTypes.array,
+  onPlayingTrackChangeFn: PropTypes.func
 };
 
-Tracks.defaultProps = {};
+Tracks.defaultProps = {
+  trendingTracks: []
+};
+
+const TrackDiv = styled.div`
+  font-size: 20px;
+  line-height: 2;
+  width: 100;
+`;
+
 export default Tracks;
