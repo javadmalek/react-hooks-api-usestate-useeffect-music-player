@@ -2,26 +2,16 @@ import React from "react";
 import Skeleton from "react-loading-skeleton";
 
 import FetchTrending from "./componsnts/fetch_trending.js.jsx";
-import Tracks from "./componsnts/tracks.js.jsx";
+import PageContainer from "./componsnts/page_container.js";
 
 import logo from "./resources/logo.svg";
 const URL_TRENDING = "https://api-stg.jam-community.com/song/trending";
 
 const app = () => {
-  const data = FetchTrending(URL_TRENDING);
-  console.log(data);
+  const fetchedData = FetchTrending(URL_TRENDING);
+  console.log(fetchedData);
 
-  return (
-    <div>
-      <ul>
-        {data.map(el => (
-          <li key={el.id}>{el.name}</li>
-        ))}
-      </ul>
-
-      <Tracks list={data} />
-    </div>
-  );
+  return <PageContainer fetchedData={fetchedData} />;
 };
 
 export default app;
