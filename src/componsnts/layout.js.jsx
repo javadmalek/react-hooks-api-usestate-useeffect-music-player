@@ -16,8 +16,9 @@ export const FlexboxDiv = styled.div`
       dimension1 &&
       "min-height : 15em; max-height: 15em; min-width: 10em; max-width: 10em;"}
     ${({ borderRadius }) => borderRadius && "border-radius: 5px;"}
+    ${({ position }) => position && `position: ${position};`}
     ${({ w100 }) => w100 && "width: 100%;"}
-
+    ${({ h15e }) => h15e && "height: 15em;"}
 `;
 
 export const TextTitle = styled.span`

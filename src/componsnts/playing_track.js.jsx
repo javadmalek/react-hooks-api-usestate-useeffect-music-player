@@ -16,9 +16,18 @@ const FormatedSpan = styled.span`
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: 0.75em;
-  margin-bottom: 0.75em;
+  margin: 0.75em 0;
   background-color: #4cb6cb;
   color: #eaf6f9;
+`;
+
+const OverlayDiv = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.75);
 `;
 
 const PrimaryLayout = ({
@@ -35,7 +44,26 @@ const PrimaryLayout = ({
       flexDirection="column"
       bgUrl={coverImagePath}
     >
-      <FlexboxDiv w100 justifyContent="space-between" alignItems="flex-end">
+      <FlexboxDiv
+        w100
+        justifyContent="space-between"
+        alignItems="flex-end"
+        position="relative"
+      >
+        <OverlayDiv>
+          <FlexboxDiv
+            w100
+            dimension1
+            flexDirection="column"
+            justifyContent="space-between"
+            alignItems="center"
+            position="absolute"
+          >
+            <FormatedSpan>*****</FormatedSpan>
+            <FormatedSpan>Play Icon</FormatedSpan>
+            <FormatedSpan>PostMessage</FormatedSpan>
+          </FlexboxDiv>
+        </OverlayDiv>
         <FormatedSpan>{duration}</FormatedSpan>
         <FormatedSpan>{dateFormat(songRelease, "yy-mm-dd")}</FormatedSpan>
       </FlexboxDiv>
