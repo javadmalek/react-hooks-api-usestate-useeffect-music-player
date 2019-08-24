@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import dateFormat from "dateformat";
 import styled from "styled-components";
 import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
+import HookPostMessage from "./hook_post_message.js";
 
 const FormatedSpan = styled.span`
   background-color: #4cb6cb;
@@ -31,6 +32,24 @@ const OverlayDiv = styled.div`
 
   ${({ displayInitial }) => `display: ${displayInitial ? "initial" : "none"};`}
 `;
+
+const PostMessageForm = ({ id }) => {
+  const fieldname = "txtbxMessage";
+  const { values, handleChange, handleSubmit } = HookPostMessage();
+
+  return (
+    <form onSubmit={e => handleSubmit(e, id, fieldname)}>
+      <input
+        type="text"
+        name={fieldname}
+        onChange={handleChange}
+        value={values.message}
+        required
+      />
+      <button type="submit">Login</button>
+    </form>
+  );
+};
 
 const PrimaryLayout = ({ track, onPlayingTrackChangeFn }) => {
   const [displayInitial, setDisplayInitial] = useState(false);
@@ -64,7 +83,7 @@ const PrimaryLayout = ({ track, onPlayingTrackChangeFn }) => {
             <FormatedSpan onClick={() => onPlayingTrackChangeFn(track)}>
               Play Icon
             </FormatedSpan>
-            <FormatedSpan>PostMessage</FormatedSpan>
+            <PostMessageForm {...track} />
           </FlexboxDiv>
         </OverlayDiv>
         <FormatedSpan>{duration}</FormatedSpan>
