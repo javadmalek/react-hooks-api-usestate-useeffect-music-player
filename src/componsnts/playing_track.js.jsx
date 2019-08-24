@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import dateFormat from "dateformat";
 import styled from "styled-components";
@@ -28,6 +28,8 @@ const OverlayDiv = styled.div`
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.75);
+
+  ${({ displayInitial }) => `display: ${displayInitial ? "initial" : "none"};`}
 `;
 
 const PrimaryLayout = ({
@@ -37,12 +39,16 @@ const PrimaryLayout = ({
   likes,
   plays
 }) => {
+  const [displayInitial, setDisplayInitial] = useState(false);
+
   return (
     <FlexboxDiv
       dimension1
       borderRadius
       flexDirection="column"
       bgUrl={coverImagePath}
+      onMouseOver={() => setDisplayInitial(true)}
+      onMouseLeave={() => setDisplayInitial(false)}
     >
       <FlexboxDiv
         w100
@@ -50,7 +56,7 @@ const PrimaryLayout = ({
         alignItems="flex-end"
         position="relative"
       >
-        <OverlayDiv>
+        <OverlayDiv displayInitial={displayInitial}>
           <FlexboxDiv
             w100
             dimension1
