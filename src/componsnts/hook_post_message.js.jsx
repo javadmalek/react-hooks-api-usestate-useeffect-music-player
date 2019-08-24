@@ -1,8 +1,6 @@
 import { useState } from "react";
 import camelcaseKeys from "camelcase-keys";
-
-const postMsgUrl =
-  "https://api-stg.jam-community.com/interact/comment?apikey=___agAFTxkmMIWsmN9zOpM_6l2SkZPPy21LGRlxhYD8";
+import { formatMSS, Routes } from "./helper";
 
 const HookPostMessage = () => {
   const [values, setValues] = useState({});
@@ -10,7 +8,7 @@ const HookPostMessage = () => {
   const handleSubmit = (event, id, fieldname) => {
     if (event) event.preventDefault();
 
-    fetch(postMsgUrl, {
+    fetch(Routes.postMsgUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",

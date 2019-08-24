@@ -3,13 +3,10 @@ import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js";
 import camelcaseKeys from "camelcase-keys";
-
-const fmtMSS = s => (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
-const postUrl =
-  "https://api-stg.jam-community.com/interact/like?apikey=___agAFTxkmMIWsmN9zOpM_6l2SkZPPy21LGRlxhYD8";
+import { formatMSS, Routes } from './helper';
 
 const onLikeClick = id => {
-  fetch(postUrl, {
+  fetch(Routes.postLikeUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -38,7 +35,7 @@ const renderTrack = (track, onPlayingTrackChangeFn, index) => {
         {track.plays}
       </FlexboxDiv>
       <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
-        {fmtMSS(track.duration)}
+        {formatMSS(track.duration)}
       </FlexboxDiv>
     </FlexboxDiv>
   );
