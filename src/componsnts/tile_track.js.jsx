@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import dateFormat from "dateformat";
 import styled from "styled-components";
 import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
-import HookPostMessage from "./hook_post_message.js";
+import PostMessageForm from "./post_message_form.js";
+import { formatMSS } from "./helper";
 
 const FormatedSpan = styled.span`
   background-color: #4cb6cb;
@@ -33,27 +34,29 @@ const OverlayDiv = styled.div`
   ${({ displayInitial }) => `display: ${displayInitial ? "initial" : "none"};`}
 `;
 
-const PostMessageForm = ({ id }) => {
-  const fieldname = "txtbxMessage";
-  const { values, handleChange, handleSubmit } = HookPostMessage();
+const OverlayTile = ({ track, displayInitial, onPlayingTrackChangeFn }) => (
+  <OverlayDiv displayInitial={displayInitial}>
+    <FlexboxDiv
+      w100
+      dimension1
+      flexDirection="column"
+      justifyContent="space-between"
+      alignItems="center"
+      position="absolute"
+    >
+      <FormatedSpan>*****</FormatedSpan>
+      <FormatedSpan onClick={() => onPlayingTrackChangeFn(track)}>
+        Play Icon
+      </FormatedSpan>
+      <PostMessageForm {...track} />
+    </FlexboxDiv>
+  </OverlayDiv>
+);
 
-  return (
-    <form onSubmit={e => handleSubmit(e, id, fieldname)}>
-      <input
-        type="text"
-        name={fieldname}
-        onChange={handleChange}
-        value={values.message}
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
-  );
-};
-
-const PrimaryLayout = ({ track, onPlayingTrackChangeFn }) => {
-  const [displayInitial, setDisplayInitial] = useState(false);
+const Tile = props => {
+  const { track } = props;
   const { coverImagePath, songRelease, duration, likes, plays } = track;
+  const [displayInitial, setDisplayInitial] = useState(false);
 
   return (
     <FlexboxDiv
@@ -70,35 +73,18 @@ const PrimaryLayout = ({ track, onPlayingTrackChangeFn }) => {
         alignItems="flex-end"
         position="relative"
       >
-        <OverlayDiv displayInitial={displayInitial}>
-          <FlexboxDiv
-            w100
-            dimension1
-            flexDirection="column"
-            justifyContent="space-between"
-            alignItems="center"
-            position="absolute"
-          >
-            <FormatedSpan>*****</FormatedSpan>
-            <FormatedSpan onClick={() => onPlayingTrackChangeFn(track)}>
-              Play Icon
-            </FormatedSpan>
-            <PostMessageForm {...track} />
-          </FlexboxDiv>
-        </OverlayDiv>
-        <FormatedSpan>{duration}</FormatedSpan>
+        <OverlayTile {...props} displayInitial={displayInitial} />
+        <FormatedSpan>{formatMSS(duration)}</FormatedSpan>
         <FormatedSpan>{dateFormat(songRelease, "yyyy-mm-dd")}</FormatedSpan>
       </FlexboxDiv>
     </FlexboxDiv>
   );
 };
-const TileTrack = ({ track, onPlayingTrackChangeFn }) => {
+const TileTrack = props => {
+  const { track } = props;
   return (
     <FlexboxDiv flexDirection="column">
-      <PrimaryLayout
-        track={track}
-        onPlayingTrackChangeFn={onPlayingTrackChangeFn}
-      />
+      <Tile {...props} />
       <TextTitle paddingTBS>{track.name}</TextTitle>
       <TextSubtitle>{track.artistName}</TextSubtitle>
     </FlexboxDiv>
