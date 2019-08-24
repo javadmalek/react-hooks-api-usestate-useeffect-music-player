@@ -4,6 +4,7 @@ import dateFormat from "dateformat";
 import styled from "styled-components";
 import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
 import PostMessageForm from "./post_message_form.js";
+import { formatMSS } from "./helper";
 
 const FormatedSpan = styled.span`
   background-color: #4cb6cb;
@@ -73,7 +74,7 @@ const Tile = props => {
         position="relative"
       >
         <OverlayTile {...props} displayInitial={displayInitial} />
-        <FormatedSpan>{duration}</FormatedSpan>
+        <FormatedSpan>{formatMSS(duration)}</FormatedSpan>
         <FormatedSpan>{dateFormat(songRelease, "yyyy-mm-dd")}</FormatedSpan>
       </FlexboxDiv>
     </FlexboxDiv>

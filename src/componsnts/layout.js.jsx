@@ -15,6 +15,9 @@ export const FlexboxDiv = styled.div`
     ${({ dimension1 }) =>
       dimension1 &&
       "min-height : 15em; max-height: 15em; min-width: 10em; max-width: 10em;"}
+      ${({ dimension2 }) =>
+        dimension2 &&
+        "min-height : 15em; max-height: 15em; min-width: 15em; max-width: 15em;"}
     ${({ borderRadius }) => borderRadius && "border-radius: 5px;"}
     ${({ position }) => position && `position: ${position};`}
     ${({ w100 }) => w100 && "width: 100%;"}
