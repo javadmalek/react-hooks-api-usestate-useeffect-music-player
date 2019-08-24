@@ -5,7 +5,9 @@ import TileTrack from "./tile_track.js";
 import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
 
 const TracksTileView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
-  const items = trendingTracks.map(track => <TileTrack track={track} />);
+  const items = trendingTracks.map(track => (
+    <TileTrack track={track} onPlayingTrackChangeFn={onPlayingTrackChangeFn} />
+  ));
 
   return <FlexboxDiv flexWrap="wrap">{items}</FlexboxDiv>;
 };
