@@ -12,19 +12,19 @@ const renderTrack = (track, onPlayingTrackChangeFn) => {
   );
 };
 
-const Tracks = ({ trendingTracks, onPlayingTrackChangeFn }) => {
+const TracksTileView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
   const items = trendingTracks.map(track =>
     renderTrack(track, onPlayingTrackChangeFn)
   );
   return <div>{items}</div>;
 };
 
-Tracks.propTypes = {
+TracksTileView.propTypes = {
   trendingTracks: PropTypes.array,
   onPlayingTrackChangeFn: PropTypes.func
 };
 
-Tracks.defaultProps = {
+TracksTileView.defaultProps = {
   trendingTracks: []
 };
 
@@ -34,4 +34,4 @@ const TrackDiv = styled.div`
   width: 100;
 `;
 
-export default Tracks;
+export default TracksTileView;

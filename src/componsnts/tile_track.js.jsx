@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import dateFormat from "dateformat";
 import styled from "styled-components";
-import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js";
+import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
 
 const FormatedSpan = styled.span`
   background-color: #4cb6cb;
@@ -76,7 +76,7 @@ const PrimaryLayout = ({
     </FlexboxDiv>
   );
 };
-const PlayingTrack = ({ track }) => {
+const TileTrack = ({ track }) => {
   return (
     <FlexboxDiv flexDirection="column">
       <PrimaryLayout {...track} />
@@ -86,6 +86,6 @@ const PlayingTrack = ({ track }) => {
   );
 };
 
-PlayingTrack.propTypes = {};
+TileTrack.propTypes = {};
 
-export default PlayingTrack;
+export default TileTrack;

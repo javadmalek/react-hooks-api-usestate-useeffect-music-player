@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Tracks from "./tracks.js";
+import Tracks from "./tracks_tile_view.js";
 import TracksGridView from "./tracks_grid_view.js";
-import PlayingTrack from "./playing_track.js";
+import TileTrack from "./tile_track.js";
 import Player from "./player.js";
 
 const PageContainer = ({ fetchedData }) => {
@@ -16,7 +16,7 @@ const PageContainer = ({ fetchedData }) => {
 
   return (
     <div>
-      <PlayingTrack track={playingTrack} />
+      <TileTrack track={playingTrack} />
       <TracksGridView
         trendingTracks={trendingTracks}
         onPlayingTrackChangeFn={setPlayingTrack}
