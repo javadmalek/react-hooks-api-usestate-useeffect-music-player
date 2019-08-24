@@ -1,22 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
-import styled from "styled-components";
-
-const renderTrack = (track, onPlayingTrackChangeFn) => {
-  return (
-    <TrackDiv key={track.id} onClick={() => onPlayingTrackChangeFn(track)}>
-      <h1>{track.name || <Skeleton />}</h1>
-      {track.artistName || <Skeleton count={10} />}
-    </TrackDiv>
-  );
-};
+import TileTrack from "./tile_track.js";
+import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
 
 const TracksTileView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
-  const items = trendingTracks.map(track =>
-    renderTrack(track, onPlayingTrackChangeFn)
-  );
-  return <div>{items}</div>;
+  const items = trendingTracks.map(track => <TileTrack track={track} />);
+
+  return <FlexboxDiv flexWrap="wrap">{items}</FlexboxDiv>;
 };
 
 TracksTileView.propTypes = {
@@ -27,11 +18,5 @@ TracksTileView.propTypes = {
 TracksTileView.defaultProps = {
   trendingTracks: []
 };
-
-const TrackDiv = styled.div`
-  font-size: 20px;
-  line-height: 2;
-  width: 100;
-`;
 
 export default TracksTileView;
