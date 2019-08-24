@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
-import styled from "styled-components";
 import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js";
 
 const fmtMSS = s => (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;

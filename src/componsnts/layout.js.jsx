@@ -22,6 +22,7 @@ export const FlexboxDiv = styled.div`
 `;
 
 export const TextTitle = styled.span`
+  font-size: 1rem;
   font-weight: 500;
   ${({ paddingTBS }) => paddingTBS && "padding: 0.5em 0;"}
 `;
