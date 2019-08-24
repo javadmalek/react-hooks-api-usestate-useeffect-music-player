@@ -68,7 +68,7 @@ const PrimaryLayout = ({ track, onPlayingTrackChangeFn }) => {
           </FlexboxDiv>
         </OverlayDiv>
         <FormatedSpan>{duration}</FormatedSpan>
-        <FormatedSpan>{dateFormat(songRelease, "yy-mm-dd")}</FormatedSpan>
+        <FormatedSpan>{dateFormat(songRelease, "yyyy-mm-dd")}</FormatedSpan>
       </FlexboxDiv>
     </FlexboxDiv>
   );

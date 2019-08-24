@@ -2,8 +2,24 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js";
+import camelcaseKeys from "camelcase-keys";
 
 const fmtMSS = s => (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
+const postUrl =
+  "https://api-stg.jam-community.com/interact/like?apikey=___agAFTxkmMIWsmN9zOpM_6l2SkZPPy21LGRlxhYD8";
+
+const onLikeClick = id => {
+  fetch(postUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "*/*"
+    },
+    body: `id=${id}`
+  })
+    .then(response => response.json())
+    .then(data => console.log(camelcaseKeys(data)));
+};
 
 const renderTrack = (track, onPlayingTrackChangeFn, index) => {
   return (
@@ -11,9 +27,7 @@ const renderTrack = (track, onPlayingTrackChangeFn, index) => {
       <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
         {++index}
       </FlexboxDiv>
-      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
-        action
-      </FlexboxDiv>
+      <FlexboxDiv onClick={() => onLikeClick(track.id)}>like!</FlexboxDiv>
       <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)} flexGrow="3">
         {track.name}
       </FlexboxDiv>

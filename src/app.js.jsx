@@ -9,7 +9,6 @@ const URL_TRENDING = "https://api-stg.jam-community.com/song/trending";
 
 const app = () => {
   const fetchedData = HookFetchTrending(URL_TRENDING);
-  console.log(fetchedData);
 
   return <PageContainer fetchedData={fetchedData} />;
 };
