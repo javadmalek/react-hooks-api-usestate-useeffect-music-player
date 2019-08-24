@@ -32,14 +32,9 @@ const OverlayDiv = styled.div`
   ${({ displayInitial }) => `display: ${displayInitial ? "initial" : "none"};`}
 `;
 
-const PrimaryLayout = ({
-  coverImagePath,
-  songRelease,
-  duration,
-  likes,
-  plays
-}) => {
+const PrimaryLayout = ({ track, onPlayingTrackChangeFn }) => {
   const [displayInitial, setDisplayInitial] = useState(false);
+  const { coverImagePath, songRelease, duration, likes, plays } = track;
 
   return (
     <FlexboxDiv
@@ -66,26 +61,33 @@ const PrimaryLayout = ({
             position="absolute"
           >
             <FormatedSpan>*****</FormatedSpan>
-            <FormatedSpan>Play Icon</FormatedSpan>
+            <FormatedSpan onClick={() => onPlayingTrackChangeFn(track)}>
+              Play Icon
+            </FormatedSpan>
             <FormatedSpan>PostMessage</FormatedSpan>
           </FlexboxDiv>
         </OverlayDiv>
         <FormatedSpan>{duration}</FormatedSpan>
-        <FormatedSpan>{dateFormat(songRelease, "yy-mm-dd")}</FormatedSpan>
+        <FormatedSpan>{dateFormat(songRelease, "yyyy-mm-dd")}</FormatedSpan>
       </FlexboxDiv>
     </FlexboxDiv>
   );
 };
-const TileTrack = ({ track }) => {
+const TileTrack = ({ track, onPlayingTrackChangeFn }) => {
   return (
     <FlexboxDiv flexDirection="column">
-      <PrimaryLayout {...track} />
+      <PrimaryLayout
+        track={track}
+        onPlayingTrackChangeFn={onPlayingTrackChangeFn}
+      />
       <TextTitle paddingTBS>{track.name}</TextTitle>
       <TextSubtitle>{track.artistName}</TextSubtitle>
     </FlexboxDiv>
   );
 };
 
-TileTrack.propTypes = {};
+TileTrack.propTypes = {
+  onPlayingTrackChangeFn: PropTypes.func
+};
 
 export default TileTrack;

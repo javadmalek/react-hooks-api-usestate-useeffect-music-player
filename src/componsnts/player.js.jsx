@@ -14,7 +14,7 @@ const Player = ({ track }) => {
 
   return (
     <div>
-      <MusicPlayer playlist={playlist} />
+      <MusicPlayer autoplay playlist={playlist} />
     </div>
   );
 };
