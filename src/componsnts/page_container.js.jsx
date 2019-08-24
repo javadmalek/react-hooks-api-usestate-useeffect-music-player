@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Tracks from "./tracks.js";
+import TracksGridView from "./tracks_grid_view.js";
 import PlayingTrack from "./playing_track.js";
 import Player from "./player.js";
 
@@ -16,7 +17,7 @@ const PageContainer = ({ fetchedData }) => {
   return (
     <div>
       <PlayingTrack track={playingTrack} />
-      <Tracks
+      <TracksGridView
         trendingTracks={trendingTracks}
         onPlayingTrackChangeFn={setPlayingTrack}
       />
