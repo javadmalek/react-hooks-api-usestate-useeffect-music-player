@@ -3,28 +3,17 @@ import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js";
 import camelcaseKeys from "camelcase-keys";
-import { formatMSS, Routes } from './helper';
-
-const onLikeClick = id => {
-  fetch(Routes.postLikeUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Accept: "*/*"
-    },
-    body: `id=${id}`
-  })
-    .then(response => response.json())
-    .then(data => console.log(camelcaseKeys(data)));
-};
+import { formatMSS, Routes } from "./helper";
+import HookPostLike from "./hook_post_like.js";
 
 const renderTrack = (track, onPlayingTrackChangeFn, index) => {
+  const { onLikePostLike } = HookPostLike();
   return (
     <FlexboxDiv w100 key={index}>
       <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
         {++index}
       </FlexboxDiv>
-      <FlexboxDiv onClick={() => onLikeClick(track.id)}>like!</FlexboxDiv>
+      <FlexboxDiv onClick={() => onLikePostLike(track.id)}>like!</FlexboxDiv>
       <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)} flexGrow="3">
         {track.name}
       </FlexboxDiv>
