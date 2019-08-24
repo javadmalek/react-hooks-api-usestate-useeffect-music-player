@@ -7,13 +7,25 @@ const fmtMSS = s => (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + s;
 
 const renderTrack = (track, onPlayingTrackChangeFn, index) => {
   return (
-    <FlexboxDiv w100 key={index} onClick={() => onPlayingTrackChangeFn(track)}>
-      <FlexboxDiv>{++index}</FlexboxDiv>
-      <FlexboxDiv>action</FlexboxDiv>
-      <FlexboxDiv flexGrow="3">{track.name}</FlexboxDiv>
-      <FlexboxDiv flexGrow="3">{track.artistName}</FlexboxDiv>
-      <FlexboxDiv>{track.plays}</FlexboxDiv>
-      <FlexboxDiv>{fmtMSS(track.duration)}</FlexboxDiv>
+    <FlexboxDiv w100 key={index}>
+      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
+        {++index}
+      </FlexboxDiv>
+      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
+        action
+      </FlexboxDiv>
+      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)} flexGrow="3">
+        {track.name}
+      </FlexboxDiv>
+      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)} flexGrow="3">
+        {track.artistName}
+      </FlexboxDiv>
+      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
+        {track.plays}
+      </FlexboxDiv>
+      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
+        {fmtMSS(track.duration)}
+      </FlexboxDiv>
     </FlexboxDiv>
   );
 };

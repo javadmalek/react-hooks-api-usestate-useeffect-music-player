@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import camelcaseKeys from "camelcase-keys";
 
-const FetchTrending = url => {
+const HookFetchTrending = url => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -13,4 +13,4 @@ const FetchTrending = url => {
   return data;
 };
 
-export default FetchTrending;
+export default HookFetchTrending;
