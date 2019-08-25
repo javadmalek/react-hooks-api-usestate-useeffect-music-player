@@ -2,28 +2,45 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
 import { FlexboxDiv } from "./layout.js";
-import camelcaseKeys from "camelcase-keys";
 import { formatMSS, Routes } from "./helper";
-import HookPostLike from "./hook_post_like.js";
+import ActionLikeIcon from "./action_icon_like.js";
 
 const renderTrack = (track, onPlayingTrackChangeFn, index) => {
-  const { onLikePostLike } = HookPostLike();
   return (
-    <FlexboxDiv w100 key={index}>
-      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
+    <FlexboxDiv w100 borderColor alignItems="center" key={index}>
+      <FlexboxDiv
+        paddingDefault
+        onClick={() => onPlayingTrackChangeFn(track, true)}
+      >
         {++index}
       </FlexboxDiv>
-      <FlexboxDiv onClick={() => onLikePostLike(track.id)}>like!</FlexboxDiv>
-      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)} flexGrow="3">
+      <FlexboxDiv paddingDefault>
+        <ActionLikeIcon id={track.id} />
+      </FlexboxDiv>
+      <FlexboxDiv
+        paddingDefault
+        onClick={() => onPlayingTrackChangeFn(track, true)}
+        flexGrow="3"
+      >
         {track.name}
       </FlexboxDiv>
-      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)} flexGrow="3">
+      <FlexboxDiv
+        paddingDefault
+        onClick={() => onPlayingTrackChangeFn(track, true)}
+        flexGrow="3"
+      >
         {track.artistName}
       </FlexboxDiv>
-      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
+      <FlexboxDiv
+        paddingDefault
+        onClick={() => onPlayingTrackChangeFn(track, true)}
+      >
         {track.plays}
       </FlexboxDiv>
-      <FlexboxDiv onClick={() => onPlayingTrackChangeFn(track)}>
+      <FlexboxDiv
+        paddingDefault
+        onClick={() => onPlayingTrackChangeFn(track, true)}
+      >
         {formatMSS(track.duration)}
       </FlexboxDiv>
     </FlexboxDiv>
@@ -32,13 +49,17 @@ const renderTrack = (track, onPlayingTrackChangeFn, index) => {
 
 const TracksGridView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
   const gridHeader = (
-    <FlexboxDiv w100>
-      <FlexboxDiv>#</FlexboxDiv>
-      <FlexboxDiv>action</FlexboxDiv>
-      <FlexboxDiv flexGrow="3">Title</FlexboxDiv>
-      <FlexboxDiv flexGrow="3">Artist</FlexboxDiv>
-      <FlexboxDiv># Plays</FlexboxDiv>
-      <FlexboxDiv>Duration</FlexboxDiv>
+    <FlexboxDiv w100 borderColor colorGold>
+      <FlexboxDiv paddingDefault>#</FlexboxDiv>
+      <FlexboxDiv paddingDefault>action</FlexboxDiv>
+      <FlexboxDiv paddingDefault flexGrow="3">
+        Title
+      </FlexboxDiv>
+      <FlexboxDiv paddingDefault flexGrow="3">
+        Artist
+      </FlexboxDiv>
+      <FlexboxDiv paddingDefault># Plays</FlexboxDiv>
+      <FlexboxDiv paddingDefault>Duration</FlexboxDiv>
     </FlexboxDiv>
   );
 
@@ -47,7 +68,7 @@ const TracksGridView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
   );
 
   return (
-    <FlexboxDiv w100 flexDirection="column">
+    <FlexboxDiv w100 borderRadius backgroundDark flexDirection="column">
       {gridHeader}
       {items}
     </FlexboxDiv>

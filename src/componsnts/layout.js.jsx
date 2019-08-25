@@ -10,14 +10,21 @@ export const FlexboxDiv = styled.div`
     ${({ flexGrow = 1 }) => `flex:${flexGrow};`}
     ${({ flexBasis }) => flexBasis && `flex-Basis:${flexBasis};`}
 
+    ${({ borderColor }) =>
+      borderColor && `border-color: lighten(#34495E, 10%);`}
+    ${({ borderRadius }) => borderRadius && `border-radius: 0.4em;`}
+    ${({ backgroundDark }) => backgroundDark && `background: #34495E;`}
     ${({ bgUrl }) =>
       bgUrl &&
       `background: url("${bgUrl}") no-repeat center center ; background-size: contain; background-color: #eee;`}
+    
+    ${({ colorGold }) => colorGold && `color: #dd5;`}
     
     ${({ marginRight }) => marginRight && "margin-right: 1em;"}
     ${({ paddingDefault }) => paddingDefault && "padding: 1em;"}
     ${({ paddingTBDefault }) => paddingTBDefault && "padding: 2em 0;"}
     ${({ paddingTBS }) => paddingTBS && "padding: 0.5em 0;"}
+    ${({ paddingDefault }) => paddingDefault && "margin: 0 1em;"}
 
     ${({ borderRadius }) => borderRadius && "border-radius: 5px;"}
     

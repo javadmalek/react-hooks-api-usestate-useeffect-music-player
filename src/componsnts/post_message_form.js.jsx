@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import HookPostMessage from "./hook_post_message.js";
-import IconSend from "../resources/icon_send.svg";
 import styled from "styled-components";
 
 const FlexForm = styled.form`
@@ -20,12 +19,8 @@ const FlexForm = styled.form`
   }
 
   > button {
-    display: inline-block;
-    background: transparent;
-    font: inherit;
     border: 0;
     outline: 0;
-    padding: 0;
     transition: all 200ms ease-in;
     cursor: pointer;
     text-transform: uppercase
