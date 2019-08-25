@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Skeleton from "react-loading-skeleton";
-import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js";
+import { FlexboxDiv } from "./layout.js";
 import camelcaseKeys from "camelcase-keys";
 import { formatMSS, Routes } from "./helper";
 import HookPostLike from "./hook_post_like.js";
@@ -47,7 +47,7 @@ const TracksGridView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
   );
 
   return (
-    <FlexboxDiv flexDirection="column">
+    <FlexboxDiv w100 flexDirection="column">
       {gridHeader}
       {items}
     </FlexboxDiv>

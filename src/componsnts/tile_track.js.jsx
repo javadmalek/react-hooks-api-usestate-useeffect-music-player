@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import dateFormat from "dateformat";
 import styled from "styled-components";
-import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
+import { FlexboxDiv, TextTitle } from "./layout.js.jsx";
 import PostMessageForm from "./post_message_form.js";
 import { formatMSS } from "./helper";
+
+import ActionLikeIcon from "./action_icon_like.js";
 
 const FormatedSpan = styled.span`
   background-color: #4cb6cb;
@@ -49,6 +51,7 @@ const OverlayTile = ({ track, displayInitial, onPlayingTrackChangeFn }) => (
         Play Icon
       </FormatedSpan>
       <PostMessageForm {...track} />
+      <ActionLikeIcon id={track.id} />
     </FlexboxDiv>
   </OverlayDiv>
 );
@@ -81,18 +84,19 @@ const Tile = props => {
   );
 };
 const TileTrack = props => {
-  const { track } = props;
+  const { track, flexBasis } = props;
   return (
-    <FlexboxDiv flexDirection="column">
+    <FlexboxDiv flexDirection="column" flexBasis={flexBasis}>
       <Tile {...props} />
       <TextTitle paddingTBS>{track.name}</TextTitle>
-      <TextSubtitle>{track.artistName}</TextSubtitle>
+      <TextTitle fontSizeS>{track.artistName}</TextTitle>
     </FlexboxDiv>
   );
 };
 
 TileTrack.propTypes = {
-  onPlayingTrackChangeFn: PropTypes.func
+  onPlayingTrackChangeFn: PropTypes.func,
+  flexBasis: PropTypes.string
 };
 
 export default TileTrack;
