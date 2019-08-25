@@ -5,11 +5,17 @@ import TracksGridView from "./tracks_grid_view.js";
 import TileTrack from "./tile_track.js";
 import HighlightTrack from "./highlight_track.js";
 import Player from "./player.js";
-import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
+import { FlexboxDiv } from "./layout.js.jsx";
 
 const PageContainer = ({ fetchedData }) => {
   const [trendingTracks, setTrendingTracks] = useState([]);
   const [playingTrack, setPlayingTrack] = useState({});
+  const [showPlayer, setShowPlayer] = useState(false);
+
+  const togglePlayingTrack = (track, isPlaying) => {
+    setPlayingTrack(track);
+    setShowPlayer(isPlaying);
+  };
 
   useEffect(() => {
     setTrendingTracks(fetchedData);
@@ -17,18 +23,21 @@ const PageContainer = ({ fetchedData }) => {
   }, [fetchedData]);
 
   return (
-    <div>
+    <FlexboxDiv w100 paddingDefault flexDirection="column">
       <HighlightTrack track={playingTrack} />
-      <TracksGridView
-        trendingTracks={trendingTracks}
-        onPlayingTrackChangeFn={setPlayingTrack}
-      />
       <TracksTileView
+        paddingTBDefault
+        playingTrack={playingTrack}
         trendingTracks={trendingTracks}
-        onPlayingTrackChangeFn={setPlayingTrack}
+        onPlayingTrackChangeFn={togglePlayingTrack}
       />
-      <Player track={playingTrack} />
-    </div>
+      <TracksGridView
+        playingTrack={playingTrack}
+        trendingTracks={trendingTracks}
+        onPlayingTrackChangeFn={togglePlayingTrack}
+      />
+      {showPlayer && <Player track={playingTrack} />}
+    </FlexboxDiv>
   );
 };
 

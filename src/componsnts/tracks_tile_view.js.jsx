@@ -7,6 +7,7 @@ import { FlexboxDiv } from "./layout.js.jsx";
 const TracksTileView = ({
   paddingTBDefault,
   trendingTracks,
+  playingTrack,
   onPlayingTrackChangeFn
 }) => {
   const items = trendingTracks.map((track, index) => (
@@ -14,6 +15,7 @@ const TracksTileView = ({
       flexBasis="20%"
       key={index}
       track={track}
+      playingTrack={playingTrack}
       onPlayingTrackChangeFn={onPlayingTrackChangeFn}
     />
   ));
@@ -27,7 +29,8 @@ const TracksTileView = ({
 
 TracksTileView.propTypes = {
   trendingTracks: PropTypes.array,
-  onPlayingTrackChangeFn: PropTypes.func
+  onPlayingTrackChangeFn: PropTypes.func,
+  playingTrack: PropTypes.object
 };
 
 TracksTileView.defaultProps = {

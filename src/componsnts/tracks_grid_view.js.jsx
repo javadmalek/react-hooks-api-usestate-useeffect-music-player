@@ -56,7 +56,8 @@ const TracksGridView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
 
 TracksGridView.propTypes = {
   trendingTracks: PropTypes.array,
-  onPlayingTrackChangeFn: PropTypes.func
+  onPlayingTrackChangeFn: PropTypes.func,
+  playingTrack: PropTypes.object
 };
 
 TracksGridView.defaultProps = {
