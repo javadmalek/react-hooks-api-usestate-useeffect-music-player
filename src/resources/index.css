@@ -16,8 +16,8 @@ body {
 
 .heart {
   cursor: pointer;
-  height: 50px;
-  width: 50px;
+  height: 75px;
+  width: 75px;
   background-image: url("https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png");
   background-position: left;
   background-repeat: no-repeat;
@@ -41,26 +41,40 @@ body {
   }
 }
 
-button {
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  outline: 0;
-  border: none;
+.btn-animated {
+  color: #fff;
+  transition: all 0.5s;
+  position: relative;
 }
-button:hover {
-  opacity: 0.5;
+.btn-animated::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
 }
-
-.rotate {
-  animation: rotation 1s 2 linear;
+.btn-animated:hover::before {
+  opacity: 0;
+  transform: scale(0.5, 0.5);
 }
-
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
+.btn-animated::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transform: scale(1.2, 1.2);
+}
+.btn-animated:hover::after {
+  opacity: 1;
+  transform: scale(1, 1);
 }

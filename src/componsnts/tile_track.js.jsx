@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import dateFormat from "dateformat";
 import styled from "styled-components";
 import { FlexboxDiv, TextTitle } from "./layout.js";
-import PostMessageForm from "./post_message_form.js";
 import ActionLikeIcon from "./action_icon_like.js";
 import { formatMSS } from "./helper";
 import IconPlay from "../resources/icon_play.svg";
@@ -65,7 +64,6 @@ const OverlayTile = ({
             onPlayingTrackChangeFn(track, !isItMe);
           }}
         />
-        <PostMessageForm {...track} />
         <ActionLikeIcon id={track.id} />
       </FlexboxDiv>
     </OverlayDiv>
