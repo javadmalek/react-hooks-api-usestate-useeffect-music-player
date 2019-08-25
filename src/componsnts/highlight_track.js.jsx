@@ -23,7 +23,7 @@ const HighlightTrack = props => {
   } = track;
 
   return (
-    <FlexboxDiv w100 alignItems="center">
+    <FlexboxDiv w100 alignItems="center" mobileFlexColumn>
       <FlexboxDiv
         dimension2
         marginRight
@@ -31,7 +31,7 @@ const HighlightTrack = props => {
         bgUrl={coverImagePath}
       />
       <FlexboxDiv w100 flexDirection="column">
-        <FlexboxDiv w100 flexDirection="column">
+        <FlexboxDiv w100 flexDirection="column" mobileAlignItems="center">
           <TextTitle fontBold fontSizeXl lineHeightL>
             {name}
           </TextTitle>
@@ -43,7 +43,7 @@ const HighlightTrack = props => {
             {description}
           </TextTitle>
         </FlexboxDiv>
-        <FlexboxDiv w100 alignItems="center">
+        <FlexboxDiv w100 alignItems="center" mobileJustifyContent="center">
           <img src={IconLike} alt={`likes: ${likes}`} />
           <TextTitle marginRightL lineHeightL>{` ${likes}`}</TextTitle>
           <TextTitle marginRightL lineHeightL>
@@ -53,7 +53,7 @@ const HighlightTrack = props => {
             faves:{` ${faves}`}
           </TextTitle>
         </FlexboxDiv>
-        <FlexboxDiv w100 alignItems="center">
+        <FlexboxDiv w100 alignItems="center" mobileJustifyContent="center">
           <PostMessageForm {...track} />
           <ActionLikeIcon id={track.id} />
         </FlexboxDiv>

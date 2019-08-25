@@ -10,12 +10,13 @@ const renderTrack = (track, onPlayingTrackChangeFn, index) => {
     <FlexboxDiv w100 borderColor alignItems="center" key={index}>
       <FlexboxDiv
         paddingDefault
+        mobileDisplayNone
         onClick={() => onPlayingTrackChangeFn(track, true)}
       >
         {++index}
       </FlexboxDiv>
       <FlexboxDiv paddingDefault>
-        <ActionLikeIcon id={track.id} />
+        <ActionLikeIcon mobileDimension3 id={track.id} />
       </FlexboxDiv>
       <FlexboxDiv
         paddingDefault
@@ -33,6 +34,7 @@ const renderTrack = (track, onPlayingTrackChangeFn, index) => {
       </FlexboxDiv>
       <FlexboxDiv
         paddingDefault
+        mobileDisplayNone
         onClick={() => onPlayingTrackChangeFn(track, true)}
       >
         {track.plays}
@@ -50,7 +52,9 @@ const renderTrack = (track, onPlayingTrackChangeFn, index) => {
 const TracksGridView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
   const gridHeader = (
     <FlexboxDiv w100 borderColor colorGold>
-      <FlexboxDiv paddingDefault>#</FlexboxDiv>
+      <FlexboxDiv paddingDefault mobileDisplayNone>
+        #
+      </FlexboxDiv>
       <FlexboxDiv paddingDefault>action</FlexboxDiv>
       <FlexboxDiv paddingDefault flexGrow="3">
         Title
@@ -58,7 +62,9 @@ const TracksGridView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
       <FlexboxDiv paddingDefault flexGrow="3">
         Artist
       </FlexboxDiv>
-      <FlexboxDiv paddingDefault># Plays</FlexboxDiv>
+      <FlexboxDiv paddingDefault mobileDisplayNone>
+        # Plays
+      </FlexboxDiv>
       <FlexboxDiv paddingDefault>Duration</FlexboxDiv>
     </FlexboxDiv>
   );
@@ -68,7 +74,13 @@ const TracksGridView = ({ trendingTracks, onPlayingTrackChangeFn }) => {
   );
 
   return (
-    <FlexboxDiv w100 borderRadius backgroundDark flexDirection="column">
+    <FlexboxDiv
+      w100
+      mobileWAuto
+      borderRadius
+      backgroundDark
+      flexDirection="column"
+    >
       {gridHeader}
       {items}
     </FlexboxDiv>
