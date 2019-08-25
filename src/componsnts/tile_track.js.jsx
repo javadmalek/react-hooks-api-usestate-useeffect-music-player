@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import dateFormat from "dateformat";
 import styled from "styled-components";
-import { FlexboxDiv, TextTitle, TextSubtitle } from "./layout.js.jsx";
-import PostMessageForm from "./post_message_form.js";
+import { FlexboxDiv, TextTitle } from "./layout.js";
+import ActionLikeIcon from "./action_icon_like.js";
 import { formatMSS } from "./helper";
+import IconPlay from "../resources/icon_play.svg";
+import IconPause from "../resources/icon_pause.svg";
 
 const FormatedSpan = styled.span`
   background-color: #4cb6cb;
@@ -34,24 +36,39 @@ const OverlayDiv = styled.div`
   ${({ displayInitial }) => `display: ${displayInitial ? "initial" : "none"};`}
 `;
 
-const OverlayTile = ({ track, displayInitial, onPlayingTrackChangeFn }) => (
-  <OverlayDiv displayInitial={displayInitial}>
-    <FlexboxDiv
-      w100
-      dimension1
-      flexDirection="column"
-      justifyContent="space-between"
-      alignItems="center"
-      position="absolute"
-    >
-      <FormatedSpan>*****</FormatedSpan>
-      <FormatedSpan onClick={() => onPlayingTrackChangeFn(track)}>
-        Play Icon
-      </FormatedSpan>
-      <PostMessageForm {...track} />
-    </FlexboxDiv>
-  </OverlayDiv>
-);
+const OverlayTile = ({
+  track,
+  playingTrack,
+  displayInitial,
+  onPlayingTrackChangeFn
+}) => {
+  const [amIPlaying, setAmIPlaying] = useState(false);
+  const isItMe = amIPlaying && playingTrack.id === track.id;
+  const playPauseIcon = isItMe ? IconPause : IconPlay;
+
+  return (
+    <OverlayDiv displayInitial={displayInitial}>
+      <FlexboxDiv
+        w100
+        dimension1
+        flexDirection="column"
+        justifyContent="space-between"
+        alignItems="center"
+        position="absolute"
+      >
+        <FormatedSpan>*****</FormatedSpan>
+        <img
+          src={playPauseIcon}
+          onClick={() => {
+            setAmIPlaying(!isItMe);
+            onPlayingTrackChangeFn(track, !isItMe);
+          }}
+        />
+        <ActionLikeIcon id={track.id} />
+      </FlexboxDiv>
+    </OverlayDiv>
+  );
+};
 
 const Tile = props => {
   const { track } = props;
@@ -81,18 +98,20 @@ const Tile = props => {
   );
 };
 const TileTrack = props => {
-  const { track } = props;
+  const { track, flexBasis } = props;
   return (
-    <FlexboxDiv flexDirection="column">
+    <FlexboxDiv flexDirection="column" flexBasis={flexBasis}>
       <Tile {...props} />
       <TextTitle paddingTBS>{track.name}</TextTitle>
-      <TextSubtitle>{track.artistName}</TextSubtitle>
+      <TextTitle fontSizeS>{track.artistName}</TextTitle>
     </FlexboxDiv>
   );
 };
 
 TileTrack.propTypes = {
-  onPlayingTrackChangeFn: PropTypes.func
+  onPlayingTrackChangeFn: PropTypes.func,
+  flexBasis: PropTypes.string,
+  playingTrack: PropTypes.object
 };
 
 export default TileTrack;

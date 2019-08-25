@@ -19,6 +19,8 @@ const Player = ({ track }) => {
   );
 };
 
-Player.propTypes = {};
+Player.propTypes = {
+  track: PropTypes.object
+};
 
 export default Player;
