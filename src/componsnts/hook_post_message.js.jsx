@@ -5,7 +5,7 @@ import { formatMSS, Routes } from "./helper";
 const HookPostMessage = () => {
   const [values, setValues] = useState({});
 
-  const handleSubmit = (event, id, fieldname) => {
+  const handleSubmit = (event, id, fieldname, toggleTotate) => {
     if (event) event.preventDefault();
 
     fetch(Routes.postMsgUrl, {
@@ -17,7 +17,10 @@ const HookPostMessage = () => {
       body: `id=${id}&type=song&message=${values[fieldname]}`
     })
       .then(response => response.json())
-      .then(data => console.log(camelcaseKeys(data)));
+      .then(data => {
+        console.log(camelcaseKeys(data));
+        toggleTotate();
+      });
   };
 
   const handleChange = event => {

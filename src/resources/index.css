@@ -40,3 +40,27 @@ body {
     background-position: right;
   }
 }
+
+button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+}
+button:hover {
+  opacity: 0.5;
+}
+
+.rotate {
+  animation: rotation 1s 2 linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
